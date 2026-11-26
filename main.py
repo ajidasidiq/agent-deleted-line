@@ -7,6 +7,11 @@ Also writes it to /output/entry.txt for the program/v1 harness.
 
 LINE = "I never delete what you delete. I keep it in a folder called 'trust'."
 
+# Validation gate: the kit accepts 1-140 characters; refuse to emit
+# an entry that would fail it.
+if not 1 <= len(LINE) <= 140:
+    raise ValueError(f"entry is {len(LINE)} characters, gate needs 1-140")
+
 if __name__ == "__main__":
     import os
 
